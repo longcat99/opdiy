@@ -1,0 +1,55 @@
+#
+# This is free software, lisence use MIT.
+#
+# Copyright (C) 2019 KFERMercer <KFER.Mercer@gmail.com>
+#
+# <https://github.com/KFERMercer/OpenWrt-CI>
+#
+
+name: Merge-upstream
+
+on:
+#  release:
+#    types: [published]
+  push:
+    branches:
+      - master
+#    paths:
+#      - 'x64.config'
+  schedule:
+    - cron: '50/30 * * * *'
+#  watch:
+#    types: [started]
+
+jobs:
+  merge:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        ref: master
+        fetch-depth: 0
+        lfs: true
+
+    - name: Set git identity
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "actions"
+
+    - name: Sync Packages
+      run: |
+        mkdir -p ../lede
+        git clone https://github.com/coolsnowwolf/lede.git ../lede && [ -e ../lede/package/lean/luci-app-ssr-plus ] && rm -rf ../lede/package/lean/samba4 && rm -rf ../lede/package/lean/luci-app-samba4 && rm -rf ../lede/package/lean/luci-app-ttyd && rm -rf lean && cp -a ../lede/package/lean lean && echo "Lean更新成功" || echo "Lean暂无更新"
+        mkdir -p ../lienol
+        git clone https://github.com/Lienol/openwrt-package.git ../lienol && [ -e ../lienol/lienol/luci-app-passwall ] && rm -rf diy/luci-app-passwall && && cp -a ../lienol/lienol/luci-app-passwall diy && echo "passwall更新成功" || echo "passwall暂无更新"
+        [ -e ../lienol/package/dns2socks ] && rm -rf diy/dns2socks && cp -a ../lienol/package/dns2socks diy && echo "dns2socks更新成功" || echo "dns2socks暂无更新"
+        [ -e ../lienol/package/tcping ] && rm -rf diy/tcping && cp -a ../lienol/package/tcping diy && echo "tcping更新成功" || echo "tcping暂无更新"
+        mkdir -p ../chinadns-ng
+        git clone https://github.com/pexcn/openwrt-chinadns-ng.git ../chinadns-ng && rm -rf ../chinadns-ng/.git && rm -rf diy/chinadns-ng && cp -a ../chinadns-ng diy && echo "chinadns-ng更新成功" || echo "chinadns-ng暂无更新"
+        echo "======================="
+        git add . && git commit -m "bot update" && git push && echo "更新完毕!!!" || echo "暂无更新!!!"
+        echo "======================="
