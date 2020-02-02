@@ -43,6 +43,7 @@ jobs:
     - name: Sync Packages
       run: |
         mkdir -p ../lede
+        mkdir -p diy
         git clone https://github.com/coolsnowwolf/lede.git ../lede && [ -e ../lede/package/lean/luci-app-ssr-plus ] && rm -rf ../lede/package/lean/samba4 && rm -rf ../lede/package/lean/luci-app-samba4 && rm -rf ../lede/package/lean/luci-app-ttyd && rm -rf lean && cp -a ../lede/package/lean lean && echo "Lean更新成功" || echo "Lean暂无更新"
         mkdir -p ../lienol
         git clone https://github.com/Lienol/openwrt-package.git ../lienol && [ -e ../lienol/lienol/luci-app-passwall ] && rm -rf diy/luci-app-passwall && cp -a ../lienol/lienol/luci-app-passwall diy && echo "passwall更新成功" || echo "passwall暂无更新"
