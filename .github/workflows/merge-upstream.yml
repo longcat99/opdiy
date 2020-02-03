@@ -56,6 +56,7 @@ jobs:
         mkdir -p ../luci-app-kcptun
         git clone https://github.com/kuoruan/luci-app-kcptun.git ../luci-app-kcptun && [ -e ../luci-app-kcptun/Makefile ] && rm -rf ../luci-app-kcptun/.git && rm -rf diy/luci-app-kcptun && cp -a ../luci-app-kcptun diy && echo "luci-app-kcptun更新成功" || echo "luci-app-kcptun暂无更新"
         git clone https://github.com/kuoruan/luci-app-v2ray.git ../luci-app-v2ray && [ -e ../luci-app-v2ray/Makefile ] && rm -rf ../luci-app-v2ray/.git && rm -rf diy/luci-app-v2ray && cp -a ../luci-app-v2ray diy && echo "luci-app-v2ray更新成功" || echo "luci-app-v2ray暂无更新"
+        git clone https://github.com/rufengsuixing/luci-app-adguardhome.git ../luci-app-adguardhome && [ -e ../luci-app-adguardhome/Makefile ] && rm -rf ../luci-app-adguardhome/.git && rm -rf diy/luci-app-adguardhome && cp -a ../luci-app-adguardhome diy && echo "luci-app-adguardhome更新成功" || echo "luci-app-adguardhome暂无更新"
         echo "======================="
         git add . && git commit -m "bot update" && git push && echo "更新完毕!!!" || echo "暂无更新!!!"
         echo "======================="
