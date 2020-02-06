@@ -44,7 +44,7 @@ jobs:
       run: |
         mkdir -p ../lede
         mkdir -p diy
-        git clone https://github.com/coolsnowwolf/lede.git ../lede && [ -e ../lede/package/lean/luci-app-ssr-plus/Makefile ] && rm -rf ../lede/package/lean/samba4 && rm -rf ../lede/package/lean/luci-app-samba4 && rm -rf ../lede/package/lean/luci-app-ttyd && rm -rf ../lede/package/lean/kcptun && rm -rf lean && cp -a ../lede/package/lean lean && echo "Lean更新成功" || echo "Lean暂无更新"
+        git clone https://github.com/coolsnowwolf/lede.git ../lede && [ -e ../lede/package/lean/luci-app-ssr-plus/Makefile ] && rm -rf ../lede/package/lean/samba4 && rm -rf ../lede/package/lean/luci-app-samba4 && rm -rf ../lede/package/lean/luci-app-ttyd && rm -rf ../lede/package/lean/kcptun && rm -rf ../lede/package/lean/luci-theme-argon && rm -rf lean && cp -a ../lede/package/lean lean && echo "Lean更新成功" || echo "Lean暂无更新"
         mkdir -p ../lienol
         git clone https://github.com/Lienol/openwrt-package.git ../lienol && [ -e ../lienol/lienol/luci-app-passwall/Makefile ] && rm -rf diy/luci-app-passwall && cp -a ../lienol/lienol/luci-app-passwall diy && echo "passwall更新成功" || echo "passwall暂无更新"
         [ -e ../lienol/package/dns2socks/Makefile ] && rm -rf diy/dns2socks && cp -a ../lienol/package/dns2socks diy && echo "dns2socks更新成功" || echo "dns2socks暂无更新"
