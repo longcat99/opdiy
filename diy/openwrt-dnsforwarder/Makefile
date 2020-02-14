@@ -42,7 +42,7 @@ endef
 
 define Build/Prepare
 	$(Build/Prepare/Default)
-	$(foreach po,$(wildcard ${CURDIR}/i18n/zh_Hans/*.po), \
+	$(foreach po,$(wildcard ${CURDIR}/i18n/zh-cn/*.po), \
 		po2lmo $(po) $(PKG_BUILD_DIR)/$(patsubst %.po,%.lmo,$(notdir $(po)));)
 endef
 
