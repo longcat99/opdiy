@@ -13,7 +13,7 @@ msgstr ""
 "X-Generator: Gtranslator 3.30.1\n"
 "Last-Translator: Yangfl <mmyangfl@gmail.com>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language: zh_CN\n"
+"Language: zh_Hans\n"
 
 #: applications/luci-app-nft-qos/luasrc/view/nft-qos/rate.htm:136
 #: applications/luci-app-nft-qos/luasrc/view/nft-qos/rate.htm:155
