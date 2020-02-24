@@ -42,21 +42,20 @@ jobs:
 
     - name: Sync Packages
       run: |
-        mkdir -p ../lede
         mkdir -p diy
-        git clone https://github.com/coolsnowwolf/lede.git ../lede && [ -e ../lede/package/lean/luci-app-ssr-plus/Makefile ] && rm -rf ../lede/package/lean/samba4 && rm -rf ../lede/package/lean/luci-app-samba4 && rm -rf ../lede/package/lean/luci-app-ttyd && rm -rf ../lede/package/lean/kcptun && rm -rf ../lede/package/lean/luci-theme-argon && rm -rf ../lede/package/lean/luci-app-dnsforwarder && rm -rf ../lede/package/lean/dnsforwarder && rm -rf lean && cp -a ../lede/package/lean lean && echo "Lean更新成功" || echo "Lean暂无更新"
+        svn co --force https://github.com/coolsnowwolf/lede/trunk/package/lean ../lean && svn revert -R ../lean && [ -e ../lean/luci-app-ssr-plus/Makefile ] && rm -rf ../lean/samba4 && rm -rf ../lean/luci-app-samba4 && rm -rf ../lean/luci-app-ttyd && rm -rf ../lean/kcptun && rm -rf ../lean/luci-theme-argon && rm -rf ../lean/luci-app-dnsforwarder && rm -rf ../lean/dnsforwarder && rm -rf lean && cp -a ../lean lean && echo "Lean更新成功" || echo "Lean暂无更新"
         mkdir -p ../lienol
-        git clone https://github.com/Lienol/openwrt-package.git ../lienol && [ -e ../lienol/lienol/luci-app-passwall/Makefile ] && rm -rf diy/luci-app-passwall && cp -a ../lienol/lienol/luci-app-passwall diy && echo "passwall更新成功" || echo "passwall暂无更新"
+        git clone -depth 1 -b https://github.com/Lienol/openwrt-package.git ../lienol && [ -e ../lienol/lienol/luci-app-passwall/Makefile ] && rm -rf diy/luci-app-passwall && cp -a ../lienol/lienol/luci-app-passwall diy && echo "passwall更新成功" || echo "passwall暂无更新"
         [ -e ../lienol/package/dns2socks/Makefile ] && rm -rf diy/dns2socks && cp -a ../lienol/package/dns2socks diy && echo "dns2socks更新成功" || echo "dns2socks暂无更新"
         [ -e ../lienol/package/tcping/Makefile ] && rm -rf diy/tcping && cp -a ../lienol/package/tcping diy && echo "tcping更新成功" || echo "tcping暂无更新"
         mkdir -p ../chinadns-ng
-        git clone https://github.com/pexcn/openwrt-chinadns-ng.git ../chinadns-ng && [ -e ../chinadns-ng/Makefile ] && rm -rf ../chinadns-ng/.git && rm -rf diy/chinadns-ng && cp -a ../chinadns-ng diy && echo "chinadns-ng更新成功" || echo "chinadns-ng暂无更新"
+        git clone -depth 1 -b https://github.com/pexcn/openwrt-chinadns-ng.git ../chinadns-ng && [ -e ../chinadns-ng/Makefile ] && rm -rf ../chinadns-ng/.git && rm -rf diy/chinadns-ng && cp -a ../chinadns-ng diy && echo "chinadns-ng更新成功" || echo "chinadns-ng暂无更新"
         mkdir -p ../openwrt-kcptun
-        git clone https://github.com/kuoruan/openwrt-kcptun.git ../openwrt-kcptun && [ -e ../openwrt-kcptun/Makefile ] && rm -rf ../openwrt-kcptun/.git && rm -rf diy/openwrt-kcptun && cp -a ../openwrt-kcptun diy && echo "openwrt-kcptun更新成功" || echo "openwrt-kcptun暂无更新"
+        git clone -depth 1 -b https://github.com/kuoruan/openwrt-kcptun.git ../kcptun && [ -e ../kcptun/Makefile ] && rm -rf ../kcptun/.git && rm -rf diy/kcptun && cp -a ../kcptun diy && echo "kcptun更新成功" || echo "kcptun暂无更新"
         mkdir -p ../luci-app-kcptun
-        git clone https://github.com/kuoruan/luci-app-kcptun.git ../luci-app-kcptun && [ -e ../luci-app-kcptun/Makefile ] && rm -rf ../luci-app-kcptun/.git && rm -rf diy/luci-app-kcptun && cp -a ../luci-app-kcptun diy && echo "luci-app-kcptun更新成功" || echo "luci-app-kcptun暂无更新"
-        git clone https://github.com/kuoruan/luci-app-v2ray.git ../luci-app-v2ray && [ -e ../luci-app-v2ray/Makefile ] && rm -rf ../luci-app-v2ray/.git && rm -rf diy/luci-app-v2ray && cp -a ../luci-app-v2ray diy && echo "luci-app-v2ray更新成功" || echo "luci-app-v2ray暂无更新"
-        git clone https://github.com/rufengsuixing/luci-app-adguardhome.git ../luci-app-adguardhome && [ -e ../luci-app-adguardhome/Makefile ] && rm -rf ../luci-app-adguardhome/.git && rm -rf diy/luci-app-adguardhome && cp -a ../luci-app-adguardhome diy && echo "luci-app-adguardhome更新成功" || echo "luci-app-adguardhome暂无更新"
+        git clone -depth 1 -b https://github.com/kuoruan/luci-app-kcptun.git ../luci-app-kcptun && [ -e ../luci-app-kcptun/Makefile ] && rm -rf ../luci-app-kcptun/.git && rm -rf diy/luci-app-kcptun && cp -a ../luci-app-kcptun diy && echo "luci-app-kcptun更新成功" || echo "luci-app-kcptun暂无更新"
+        git clone -depth 1 -b https://github.com/kuoruan/luci-app-v2ray.git ../luci-app-v2ray && [ -e ../luci-app-v2ray/Makefile ] && rm -rf ../luci-app-v2ray/.git && rm -rf diy/luci-app-v2ray && cp -a ../luci-app-v2ray diy && echo "luci-app-v2ray更新成功" || echo "luci-app-v2ray暂无更新"
+        git clone -depth 1 -b https://github.com/rufengsuixing/luci-app-adguardhome.git ../luci-app-adguardhome && [ -e ../luci-app-adguardhome/Makefile ] && rm -rf ../luci-app-adguardhome/.git && rm -rf diy/luci-app-adguardhome && cp -a ../luci-app-adguardhome diy && echo "luci-app-adguardhome更新成功" || echo "luci-app-adguardhome暂无更新"
         echo "======================="
         git add . && git commit -m "bot update" && git push && echo "更新完毕!!!" || echo "暂无更新!!!"
         echo "======================="
