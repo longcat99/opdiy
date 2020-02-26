@@ -43,7 +43,7 @@ jobs:
     - name: Sync Packages
       run: |
         mkdir -p diy
-        svn co --force https://github.com/coolsnowwolf/lede/trunk/package/lean ../lean && svn revert -R ../lean && rm -rf ../lean/.svn && [ -e ../lean/luci-app-ssr-plus/Makefile ] && rm -rf ../lean/samba4 && rm -rf ../lean/luci-app-samba4 && rm -rf ../lean/luci-app-ttyd && rm -rf ../lean/luci-theme-argon && rm -rf ../lean/luci-app-dnsforwarder && rm -rf ../lean/dnsforwarder && rm -rf lean && mv ../lean ./ && echo "Lean更新成功" || echo "Lean暂无更新"
+        svn co --force -q https://github.com/coolsnowwolf/lede/trunk/package/lean ../lean && svn revert -R ../lean && rm -rf ../lean/.svn && [ -e ../lean/luci-app-ssr-plus/Makefile ] && rm -rf ../lean/samba4 && rm -rf ../lean/luci-app-samba4 && rm -rf ../lean/luci-app-ttyd && rm -rf ../lean/luci-theme-argon && rm -rf ../lean/luci-app-dnsforwarder && rm -rf ../lean/dnsforwarder && rm -rf lean && mv ../lean ./ && echo "Lean更新成功" || echo "Lean暂无更新"
         git clone --depth 1 https://github.com/Lienol/openwrt-package.git ../lienol && [ -e ../lienol/lienol/luci-app-passwall/Makefile ] && rm -rf diy/luci-app-passwall && cp -a ../lienol/lienol/luci-app-passwall diy && echo "passwall更新成功" || echo "passwall暂无更新"
         [ -e ../lienol/package/dns2socks/Makefile ] && rm -rf diy/dns2socks && cp -a ../lienol/package/dns2socks diy && echo "dns2socks更新成功" || echo "dns2socks暂无更新"
         [ -e ../lienol/package/tcping/Makefile ] && rm -rf diy/tcping && cp -a ../lienol/package/tcping diy && echo "tcping更新成功" || echo "tcping暂无更新"
