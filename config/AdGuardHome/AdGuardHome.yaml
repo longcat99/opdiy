@@ -72472,7 +72472,7 @@ filters:
   url: http://sub.adtchrome.com/adt-chinalist-easylist.txt
   name: ChinaList+EasyList(修正)
   id: 1553073405
-- enabled: true
+- enabled: false
   url: https://raw.githubusercontent.com/missdeer/blocklist/master/toblock-without-shorturl.lst
   name: toblock-without-shorturl
   id: 1583870454
