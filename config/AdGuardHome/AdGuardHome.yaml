@@ -18,7 +18,7 @@ dns:
   blocking_mode: nxdomain
   blocking_ipv4: ""
   blocking_ipv6: ""
-  blocked_response_ttl: 68000
+  blocked_response_ttl: 10
   ratelimit: 0
   ratelimit_whitelist: []
   refuse_any: true
@@ -72486,7 +72486,7 @@ dhcp:
   range_start: ""
   range_end: ""
   lease_duration: 0
-  icmp_timeout_msec: 1000
+  icmp_timeout_msec: 3000
 clients: []
 log_file: ""
 verbose: false
