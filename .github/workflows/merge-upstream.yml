@@ -55,7 +55,7 @@ jobs:
         sed -e 's|^server=/\(.*\)/114.114.114.114$$|\1|' accelerated-domains.china.conf | egrep -v '^#' > accelerated-domains.china.raw.txt && \
         sed -i "s/server=/  - '[/g;s/114.114.114.114/]https:\/\/223.5.5.5\/dns-query'/g" accelerated-domains.china.raw.txt && \
         sed -i '/114.114.114.114/d' config/AdGuardHome/AdGuardHome.yaml && \
-        sed -i '40r accelerated-domains.china.raw.txt' config/AdGuardHome/AdGuardHome.yaml && \
+        sed -i '42r accelerated-domains.china.raw.txt' config/AdGuardHome/AdGuardHome.yaml && \
         rm -rf accelerated* && echo "AdGuardHome.yaml更新成功" || echo "AdGuardHome.yaml暂无更新"
         echo "======================="
         git add . && git commit -m "$(date "+%Y%m%d-%H%M")" && git push && echo "更新完毕!!!" || echo "暂无更新!!!"
