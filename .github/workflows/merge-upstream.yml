@@ -54,7 +54,7 @@ jobs:
         wget https://github.com/felixonmars/dnsmasq-china-list/raw/master/accelerated-domains.china.conf && \
         sed -e 's|^server=/\(.*\)/114.114.114.114$$|\1|' accelerated-domains.china.conf | egrep -v '^#' > accelerated-domains.china.raw.txt && \
         sed -i "s/server=/  - '[/g;s/114.114.114.114/]https:\/\/dns.alidns.com\/dns-query'/g" accelerated-domains.china.raw.txt && \
-        sed -i '/114.114.114.114/d' config/AdGuardHome/AdGuardHome.yaml && \
+        sed -i '/dns.alidns.com\/dns-query/d' config/AdGuardHome/AdGuardHome.yaml && \
         sed -i '40r accelerated-domains.china.raw.txt' config/AdGuardHome/AdGuardHome.yaml && \
         rm -rf accelerated* && echo "AdGuardHome.yaml更新成功" || echo "AdGuardHome.yaml暂无更新"
         echo "======================="
