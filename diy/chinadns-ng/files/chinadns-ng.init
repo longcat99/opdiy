@@ -17,9 +17,9 @@ append_param() {
 	local switch="$3"
 	local default="$4"
 	local _loctmp
-	config_get _loctmp "$section" "$option"
-	[ -n "$_loctmp" -o -n "$default" ] || return 0
-	procd_append_param command "$switch" "${_loctmp:-$default}"
+	config_get _loctmp "$section" "$option" "$default"
+	[ -n "$_loctmp" ] || return 0
+	procd_append_param command "$switch" "$_loctmp"
 }
 
 append_bool() {
@@ -33,7 +33,7 @@ append_bool() {
 	procd_append_param command "$value"
 }
 
-append_param_if_not_eq() {
+append_param_if_neq() {
 	local section="$1"
 	local option="$2"
 	local switch="$3"
@@ -41,9 +41,8 @@ append_param_if_not_eq() {
 	local _loctmp
 	config_get _loctmp "$section" "$option"
 	[ -n "$_loctmp" ] || return 0
-	[ "$_loctmp" != "$compare" ] && {
-		procd_append_param command "$switch" "$_loctmp"
-	}
+	[ "$_loctmp" != "$compare" ] || return 0
+	procd_append_param command "$switch" "$_loctmp"
 }
 
 get_value() {
@@ -87,7 +86,7 @@ create_chnroute_ipset() {
 }
 
 create_ipv4_ipset() {
-	local ipset_name=$(get_value $1 "ipset_name4" "chnroute")
+	local ipset_name=$(get_value "chinadns-ng" "ipset_name4" "chnroute")
 
 	if is_exist_ipset $ipset_name; then
 		ipset flush $ipset_name
@@ -102,7 +101,7 @@ create_ipv4_ipset() {
 }
 
 create_ipv6_ipset() {
-	local ipset_name=$(get_value $1 "ipset_name6" "chnroute6")
+	local ipset_name=$(get_value "chinadns-ng" "ipset_name6" "chnroute6")
 
 	if is_exist_ipset $ipset_name; then
 		ipset flush $ipset_name
@@ -123,22 +122,20 @@ destroy_chnroute_ipset() {
 }
 
 destroy_ipv4_ipset() {
-	local ipset_name=$(get_value $1 "ipset_name4" "chnroute")
+	local ipset_name=$(get_value "chinadns-ng" "ipset_name4" "chnroute")
 	destroy_ipset $ipset_name
 }
 
 destroy_ipv6_ipset() {
-	local ipset_name=$(get_value $1 "ipset_name6" "chnroute6")
+	local ipset_name=$(get_value "chinadns-ng" "ipset_name6" "chnroute6")
 	destroy_ipset $ipset_name
 }
 
 start_chinadns_ng() {
 	[ $(get_value_bool $1 "enable") = 1 ] || return 0
 
-	local reuse_port
-	config_get_bool reuse_port $1 reuse_port
 	local instances=$(get_cpu_cores)
-	[ "$reuse_port" = 1 ] || instances=1
+	[ $(get_value_bool $1 "reuse_port") = 1 ] || instances=1
 
 	for i in $(seq 1 $instances)
 	do
@@ -152,12 +149,12 @@ start_chinadns_ng() {
 		append_param $1 bind_port "-l"
 		append_param $1 china_dns "-c"
 		append_param $1 trust_dns "-t"
-		append_param_if_not_eq $1 ipset_name4 "-4" "chnroute"
-		append_param_if_not_eq $1 ipset_name6 "-6" "chnroute6"
+		append_param_if_neq $1 ipset_name4 "-4" "chnroute"
+		append_param_if_neq $1 ipset_name6 "-6" "chnroute6"
 		append_param $1 gfwlist_file "-g"
 		append_param $1 chnlist_file "-m"
-		append_param_if_not_eq $1 timeout_sec "-o" "5"
-		append_param_if_not_eq $1 repeat_times "-p" "1"
+		append_param_if_neq $1 timeout_sec "-o" "5"
+		append_param_if_neq $1 repeat_times "-p" "1"
 		append_bool $1 chnlist_first "-M"
 		append_bool $1 fair_mode "-f"
 		append_bool $1 reuse_port "-r"
