@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=chinadns-ng
-PKG_VERSION:=1.0-beta.22
-PKG_RELEASE:=4
+PKG_VERSION:=1.0-beta.24
+PKG_RELEASE:=3
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/zfl9/chinadns-ng.git
-PKG_SOURCE_VERSION:=90e9f263fa6b4954d52dfa2f36948968269bc73b
+PKG_SOURCE_VERSION:=df3bb7c6310df9b3c0f874b7a0c38ea5ce0996cb
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)/$(PKG_SOURCE_SUBDIR)
@@ -38,11 +38,14 @@ define Package/chinadns-ng/conffiles
 /etc/chinadns-ng/chnroute6.txt
 /etc/chinadns-ng/gfwlist.txt
 /etc/chinadns-ng/chinalist.txt
+/etc/chinadns-ng/chnroute.extra
+/etc/chinadns-ng/chnroute6.extra
 endef
 
 define Package/chinadns-ng/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/chinadns-ng $(1)/usr/bin
+	$(INSTALL_BIN) files/chinadns-ng-update-list.sh $(1)/usr/bin
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) files/chinadns-ng.init $(1)/etc/init.d/chinadns-ng
 	$(INSTALL_DIR) $(1)/etc/config
@@ -52,6 +55,8 @@ define Package/chinadns-ng/install
 	$(INSTALL_DATA) files/chnroute6.txt $(1)/etc/chinadns-ng
 	$(INSTALL_DATA) files/gfwlist.txt $(1)/etc/chinadns-ng
 	$(INSTALL_DATA) files/chinalist.txt $(1)/etc/chinadns-ng
+	$(INSTALL_DATA) files/chnroute.extra $(1)/etc/chinadns-ng
+	$(INSTALL_DATA) files/chnroute6.extra $(1)/etc/chinadns-ng
 endef
 
 define Package/chinadns-ng/postrm

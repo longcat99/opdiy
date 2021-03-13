@@ -1,6 +1,6 @@
 #!/bin/sh /etc/rc.common
 #
-# Copyright (C) 2019-2020 pexcn <i@pexcn.me>
+# Copyright (C) 2019-2021 pexcn <i@pexcn.me>
 #
 # This is free software, licensed under the GNU General Public License v3.
 # See /LICENSE for more information.
@@ -80,6 +80,7 @@ create_ipv4_ipset() {
 	# import ipv4 chnroute
 	ipset restore <<- EOF
 		$(cat /etc/chinadns-ng/chnroute.txt | sed "s/^/add $ipset_name /")
+		$(cat /etc/chinadns-ng/chnroute.extra | sed "s/^/add $ipset_name /")
 	EOF
 }
 
@@ -96,6 +97,7 @@ create_ipv6_ipset() {
 	# import ipv6 chnroute
 	ipset restore <<- EOF
 		$(cat /etc/chinadns-ng/chnroute6.txt | sed "s/^/add $ipset_name /")
+		$(cat /etc/chinadns-ng/chnroute6.extra | sed "s/^/add $ipset_name /")
 	EOF
 }
 
@@ -145,6 +147,7 @@ start_chinadns_ng() {
 		append_param_if_neq $1 timeout_sec "-o" "5"
 		append_param_if_neq $1 repeat_times "-p" "1"
 		append_bool $1 chnlist_first "-M"
+		append_bool $1 no_ipv6 "-N"
 		append_bool $1 fair_mode "-f"
 		append_bool $1 reuse_port "-r"
 		append_bool $1 noip_as_chnip "-n"
