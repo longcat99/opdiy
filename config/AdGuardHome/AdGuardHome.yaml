@@ -3217,6 +3217,7 @@ dns:
   - '[/360zhijia.com/]https://dns.alidns.com/dns-query'
   - '[/360zhuizhu.com/]https://dns.alidns.com/dns-query'
   - '[/360zhyx.com/]https://dns.alidns.com/dns-query'
+  - '[/360zimeiti.com/]https://dns.alidns.com/dns-query'
   - '[/361.cm/]https://dns.alidns.com/dns-query'
   - '[/361757.com/]https://dns.alidns.com/dns-query'
   - '[/3618med.com/]https://dns.alidns.com/dns-query'
@@ -22993,6 +22994,7 @@ dns:
   - '[/fawuzaixian.com/]https://dns.alidns.com/dns-query'
   - '[/fax52.com/]https://dns.alidns.com/dns-query'
   - '[/faxdns.com/]https://dns.alidns.com/dns-query'
+  - '[/faxdns.net/]https://dns.alidns.com/dns-query'
   - '[/faxeye.com/]https://dns.alidns.com/dns-query'
   - '[/faxingchina.com/]https://dns.alidns.com/dns-query'
   - '[/faxingcn.com/]https://dns.alidns.com/dns-query'
@@ -47798,6 +47800,7 @@ dns:
   - '[/rijiwang.com/]https://dns.alidns.com/dns-query'
   - '[/riju.tv/]https://dns.alidns.com/dns-query'
   - '[/rijutv.com/]https://dns.alidns.com/dns-query'
+  - '[/rikka.app/]https://dns.alidns.com/dns-query'
   - '[/rilvtong.com/]https://dns.alidns.com/dns-query'
   - '[/rilzob.com/]https://dns.alidns.com/dns-query'
   - '[/rimiedu.com/]https://dns.alidns.com/dns-query'
@@ -51229,6 +51232,7 @@ dns:
   - '[/sogou.com/]https://dns.alidns.com/dns-query'
   - '[/sogou2.com/]https://dns.alidns.com/dns-query'
   - '[/sogoucdn.com/]https://dns.alidns.com/dns-query'
+  - '[/sogouimecdn.com/]https://dns.alidns.com/dns-query'
   - '[/sogouw.com/]https://dns.alidns.com/dns-query'
   - '[/sogouwenwen.com/]https://dns.alidns.com/dns-query'
   - '[/soharp.com/]https://dns.alidns.com/dns-query'
@@ -68383,8 +68387,6 @@ dns:
   - '[/zzzzaaaa.com/]https://dns.alidns.com/dns-query'
   - '[/zzzzhong.com/]https://dns.alidns.com/dns-query'
   - '[/zzzzmall.com/]https://dns.alidns.com/dns-query'
-  - '[/凯荣机械.net/]https://dns.alidns.com/dns-query'
-  - '[/名臣健康.com/]https://dns.alidns.com/dns-query'
   filtering_enabled: true
   filters_update_interval: 24
   parental_enabled: false
